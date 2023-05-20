@@ -1,4 +1,10 @@
+import 'package:cricket_over_and_wicket_counter/cards/over_card.dart';
 import 'package:flutter/material.dart';
+
+import 'buttons/ball_button.dart';
+import 'buttons/wicket_button.dart';
+import 'cards/wicket_card.dart';
+import 'space_between.dart';
 
 void main() {
   runApp(const MainApp());
@@ -16,7 +22,8 @@ class _MainAppState extends State<MainApp> {
   var ball = 0;
   var wicket = 0;
 
-  void wicketCount() {
+  void wicketFunction() {
+    // print("wicket button pressed");
     setState(() {
       wicket += 1;
     });
@@ -37,54 +44,24 @@ class _MainAppState extends State<MainApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Testing"),
-        ),
-        backgroundColor: Colors.grey,
-        body: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Over: $over Overs',
-                style: const TextStyle(fontSize: 50),
-              ),
-
-              const SizedBox(width: double.infinity, height: 20),
-
-              // Ball Count
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(width: 5),
-                ),
-                child: TextButton(
-                  style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.white),
-                    padding: MaterialStatePropertyAll(
-                      EdgeInsets.all(100),
-                    ),
-                  ),
-                  onPressed: ballCount,
-                  child: Text(
-                    '$ball Ball',
-                    style: const TextStyle(fontSize: 50, color: Colors.black),
-                  ),
-                ),
-              ),
-              const SizedBox(width: double.infinity, height: 20),
-              // Wickets Count
-              TextButton(
-                style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.white),
-                ),
-                onPressed: wicketCount,
-                child: Text(
-                  '$wicket Wickets',
-                  style: const TextStyle(fontSize: 50, color: Colors.black),
-                ),
-              ),
-            ],
+          title: const Text(
+            "Cricket Umpire Assistance App",
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
+          backgroundColor: const Color.fromARGB(100, 02, 64, 54),
+        ),
+        body: Container(
+          color: const Color.fromRGBO(7, 48, 66, 1.000),
+          child: Column(children: const [
+            SpaceBetween(),
+            WicketButton(),
+            SpaceBetween(),
+            WicketCard(),
+            SpaceBetween(),
+            BallButton(),
+            SpaceBetween(),
+            OverCard(),
+          ]),
         ),
       ),
     );
